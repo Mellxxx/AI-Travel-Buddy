@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import PlacesImages from "./PlacesImages";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const PlaceRecommendations = ({ country }) => {
     const [places, setPlaces] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -26,7 +28,7 @@ const PlaceRecommendations = ({ country }) => {
             setError(null);
 
             // Anfrage an die API
-            const response = await fetch("http://localhost:5000/api/places", {
+            const response = await fetch(`${API_URL}/api/places`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -11,6 +11,7 @@ import {
     TooltipProvider,
 } from "../components/ui/tooltip";
 
+const API_URL = import.meta.env.VITE_API_URL;
 
 const DestinationRecco = () => {
     const options = [
@@ -143,7 +144,7 @@ const DestinationRecco = () => {
             setIsLoading(true);
             setError(null); // Fehler-Status zurücksetzen
 
-            const response = await fetch("http://localhost:5000/api/recommendations", {
+            const response = await fetch(`${API_URL}/api/recommendations`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
