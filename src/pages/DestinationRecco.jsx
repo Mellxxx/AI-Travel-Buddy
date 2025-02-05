@@ -11,7 +11,10 @@ import {
     TooltipProvider,
 } from "../components/ui/tooltip";
 
+import { sendGAEvent } from "@/utils/analytics";
+
 const API_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 const DestinationRecco = () => {
     const options = [
@@ -168,8 +171,21 @@ const DestinationRecco = () => {
             // Empfehlung im Local Storage speichern
             localStorage.setItem('recommendations', JSON.stringify(data.recommendations));
 
+            // Google Analytics Tracking
+            sendGAEvent("api_success", {
+                category: "Success",
+                label: "Destination: API Request was successful",
+            });
+
 
         } catch (error) {
+
+            // Google Analytics Error-Tracking
+            sendGAEvent("api_error", {
+                category: "Error",
+                label: `Destination: API Request failed: ${error.message}`,
+            });
+
             console.error("Error while sending your data:", error);
             setError("An Error accured while retrieving your Recommendation. ");
         } finally {
@@ -297,10 +313,12 @@ const DestinationRecco = () => {
                                     <div className='flex flex-row items-center text-green-500'>
                                         <p className='text-green-500 mr-2'>{cost}</p>
                                         <Tooltip>
-                                            <TooltipTrigger asChild>
-                                                <i className="fa fa-info-circle cursor-pointer" aria-hidden="true"></i>
+                                            <TooltipTrigger>
+                                                <button className="cursor-pointer">
+                                                    <i className="fa fa-info-circle" aria-hidden="true"></i>
+                                                </button>
                                             </TooltipTrigger>
-                                            <TooltipContent>
+                                            <TooltipContent side="top">
                                                 <p>Estimated cost 1 person for 5 days. In this case {cost}</p>
                                             </TooltipContent>
                                         </Tooltip>

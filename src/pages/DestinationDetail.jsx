@@ -72,12 +72,18 @@ const DestinationDetail = () => {
                 <p className='text-green-500 mr-2 text-xl'>{cost}</p>
                 <Tooltip>
                     <TooltipTrigger asChild>
-                        <i className="fa fa-info-circle cursor-pointer" aria-hidden="true"></i>
+                        <button
+                            className="cursor-pointer"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <i className="fa fa-info-circle" aria-hidden="true"></i>
+                        </button>
                     </TooltipTrigger>
-                    <TooltipContent>
+                    <TooltipContent side="top">
                         <p>Estimated cost 1 person for 5 days. In this case {cost}</p>
                     </TooltipContent>
                 </Tooltip>
+
             </div>
             <CountryImages countryName={name} />
             <h2 className='text-[--light] text-md mb-4'>General Information:</h2>

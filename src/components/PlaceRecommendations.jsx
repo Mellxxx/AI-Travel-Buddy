@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import PlacesImages from "./PlacesImages";
 
+import { sendGAEvent } from "@/utils/analytics";
+
 const API_URL = import.meta.env.VITE_BACKEND_URL;
 
 const PlaceRecommendations = ({ country }) => {
@@ -44,9 +46,24 @@ const PlaceRecommendations = ({ country }) => {
 
             // Ergebnisse für das Land in localStorage speichern
             localStorage.setItem(`places_${country}`, JSON.stringify(data.recommendations));
+
+            // Google Analytics Tracking
+            sendGAEvent("api_success", {
+                category: "Success",
+                label: "Place: API Request was successful",
+            });
+
+
         } catch (err) {
             setError("An error occurred while retrieving places.");
             console.error(err);
+
+            // Google Analytics Error-Tracking
+            sendGAEvent("api_error", {
+                category: "Error",
+                label: `Place: API Request failed: ${error.message}`,
+            });
+
         } finally {
             setLoading(false);
         }
