@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PlacesImages from "./PlacesImages";
 
-import { sendGAEvent } from "@/utils/analytics";
+import { sendGAEvent } from "../utils/analytics";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL;
 

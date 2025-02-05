@@ -11,7 +11,7 @@ import {
     TooltipProvider,
 } from "../components/ui/tooltip";
 
-import { sendGAEvent } from "@/utils/analytics";
+import { sendGAEvent } from "../utils/analytics";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL;
 
