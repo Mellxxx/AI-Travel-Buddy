@@ -10,7 +10,7 @@ const PlaceRecommendations = ({ country }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    // Lade User-Präferenzen aus dem localStorage
+    // load user preferences
     const getUserPreferences = () => {
         const storedPreferences = localStorage.getItem("userPreferences");
         return storedPreferences ? JSON.parse(storedPreferences) : {};
@@ -29,7 +29,7 @@ const PlaceRecommendations = ({ country }) => {
             setLoading(true);
             setError(null);
 
-            // Anfrage an die API
+            // API Request
             const response = await fetch(`${API_URL}/api/places`, {
                 method: "POST",
                 headers: {
@@ -42,12 +42,12 @@ const PlaceRecommendations = ({ country }) => {
             if (!response.ok) throw new Error(`Server error: ${response.status}`);
 
             const data = await response.json();
-            setPlaces(data.recommendations); // Ergebnisse in den State setzen
+            setPlaces(data.recommendations); // Set to state
 
-            // Ergebnisse für das Land in localStorage speichern
+            // store places in localStorage
             localStorage.setItem(`places_${country}`, JSON.stringify(data.recommendations));
 
-            // Google Analytics Tracking
+            // GA-4 Tracking
             sendGAEvent("api_success", {
                 category: "Success",
                 label: "Place: API Request was successful",
@@ -58,7 +58,7 @@ const PlaceRecommendations = ({ country }) => {
             setError("An error occurred while retrieving places.");
             console.error(err);
 
-            // Google Analytics Error-Tracking
+            // GA-4 Error-Tracking
             sendGAEvent("api_error", {
                 category: "Error",
                 label: `Place: API Request failed: ${error.message}`,
@@ -70,18 +70,17 @@ const PlaceRecommendations = ({ country }) => {
     };
 
     useEffect(() => {
-        // Lade existierende Daten aus localStorage
+        // load existing places from localStorage
         const storedPlaces = localStorage.getItem(`places_${country}`);
         if (storedPlaces) {
-            setPlaces(JSON.parse(storedPlaces)); // Falls vorhanden, Daten aus dem localStorage verwenden
+            setPlaces(JSON.parse(storedPlaces));
         } else {
-            fetchRecommendedPlaces(); // Falls nicht vorhanden, Serveranfrage starten
+            fetchRecommendedPlaces();
         }
     }, [country]);
 
     return (
         <div className="mt-10">
-            {/* Ladeanzeige */}
             {loading &&
                 Array(6)
                     .fill(0)
@@ -92,10 +91,9 @@ const PlaceRecommendations = ({ country }) => {
                         ></div>
                     ))}
 
-            {/* Fehleranzeige */}
             {error && <p className="text-red-500">{error}</p>}
 
-            {/* Orte anzeigen */}
+            {/* <------- display Places -------> */}
             <div className="mt-6">
                 {places.map((place, index) => {
                     const googleSearch = `https://www.google.com/search?q=${encodeURIComponent(country)}+Vacation`;

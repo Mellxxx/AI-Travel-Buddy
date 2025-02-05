@@ -6,7 +6,7 @@ const FlightSearch = () => {
     const [destination, setDestination] = useState("");
     const [departureDate, setDepartureDate] = useState("");
     const [flights, setFlights] = useState([]);
-    const API_KEY = "DEIN_SKYSCANNER_API_KEY"; // Ersetze mit deinem API-Key
+    const API_KEY = "DEIN_SKYSCANNER_API_KEY"; // SkyScanner API-Key
 
     const searchFlights = async () => {
         try {

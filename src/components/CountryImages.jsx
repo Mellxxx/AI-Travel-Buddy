@@ -23,7 +23,7 @@ const CountryImages = ({ countryName }) => {
                         "height": 3264,
                     },
                     headers: {
-                        Authorization: 'Client-ID AYCnup-u98ZSiTrvKHf-osexumSFd7XCG4TZ7utphTc', // Ersetze durch deinen Access Key
+                        Authorization: `Client-ID ${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}`, // Unsplash API Key
                     },
                 });
                 setImages(response.data.results);
@@ -41,7 +41,7 @@ const CountryImages = ({ countryName }) => {
         <div>
             <div className='grid grid-cols-5 gap-2 mb-12 hidden md:grid'>
                 {loading &&
-                    Array(5) // Platzhalter für 6 Skelette
+                    Array(5)
                         .fill(0)
                         .map((_, index) => (
                             <div className="relative w-full overflow-hidden rounded-lg animate-pulse bg-slate-100 dark:bg-blue-900 aspect-square" key={index}></div>

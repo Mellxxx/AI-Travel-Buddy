@@ -9,9 +9,9 @@ const DonationPopup = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowPopup(true);
-        }, 120000); // Popup nach 1 Minute
+        }, 120000); // Popup after 1 Minute
 
-        return () => clearTimeout(timer); // Timer bereinigen, wenn die Komponente entladen wird
+        return () => clearTimeout(timer);
     }, []);
 
     return (

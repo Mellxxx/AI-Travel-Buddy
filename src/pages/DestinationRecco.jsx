@@ -48,7 +48,7 @@ const DestinationRecco = () => {
 
     const budgetOptions = ["$ low", "$$ medium", "$$$ higher", "$$$$ expensive"];
 
-    // State-Variablen
+    // State-Variabls start
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [budgetOption, setBudgetOption] = useState(null);
     const [customOptions, setCustomOptions] = useState([]);
@@ -57,12 +57,13 @@ const DestinationRecco = () => {
     const [recommendations, setRecommendations] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    // State-Variabls end
 
 
-    // Referenz für den Ladevorgang
+    // refrences for initial load
     const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-    // Präferenzen und Empfehlungen aus dem `localStorage` laden
+    // ***** recieve prefrences from "localStorage" *****
     useEffect(() => {
 
         const savedPreferences = localStorage.getItem('userPreferences');
@@ -75,14 +76,15 @@ const DestinationRecco = () => {
         }
     }, []);
 
+    // ***** after load set prefrences in "localStorage" on change *****
     useEffect(() => {
 
         if (isInitialLoad) {
-            setIsInitialLoad(false); // Erstes Laden abschließen
+            setIsInitialLoad(false); // stop initial Load 
             return;
         }
 
-        // Speichere Präferenzen im localStorage, wenn sich die State-Variablen geändert haben
+        // save prefrences in "localStorage" on change
         const preferences = {
             selectedOptions,
             customOptions,
@@ -98,13 +100,13 @@ const DestinationRecco = () => {
 
 
     const handleCountryClick = (country) => {
-        // Beschreibung aus den Empfehlungen finden
+        // find description of destination
         const recommendation = recommendations.find(rec => rec.country === country);
         const description = recommendation ? recommendation.description : "No description available."; // Fallback-Wert
         const cost = recommendation ? recommendation.cost : "No description available."; // Fallback-Wert
 
 
-        // Navigation zur Detailseite mit dem Länder-Namen und der Beschreibung
+        // Navigation to detail page with description and country name
         navigate(`/destination/${encodeURIComponent(country)}`, { state: { description, cost } });
     };
 
@@ -145,7 +147,7 @@ const DestinationRecco = () => {
 
         try {
             setIsLoading(true);
-            setError(null); // Fehler-Status zurücksetzen
+            setError(null); // set back Error-Status 
 
             const response = await fetch(`${API_URL}/api/recommendations`, {
                 method: "POST",
@@ -162,16 +164,16 @@ const DestinationRecco = () => {
 
             const data = await response.json();
 
-            // Vor dem Speichern der neuen Empfehlungen die alten entfernen
+            // before saving new Recommendations, remove old ones
             localStorage.removeItem('recommendations');
 
-            // Empfehlungen im State speichern
+            // saving new Recommendations
             setRecommendations(data.recommendations);
 
-            // Empfehlung im Local Storage speichern
+            // save Recommendations in localStorage
             localStorage.setItem('recommendations', JSON.stringify(data.recommendations));
 
-            // Google Analytics Tracking
+            // GA-4 Tracking Event
             sendGAEvent("api_success", {
                 category: "Success",
                 label: "Destination: API Request was successful",
@@ -180,7 +182,7 @@ const DestinationRecco = () => {
 
         } catch (error) {
 
-            // Google Analytics Error-Tracking
+            // GA-4 Error-Tracking
             sendGAEvent("api_error", {
                 category: "Error",
                 label: `Destination: API Request failed: ${error.message}`,
@@ -194,7 +196,7 @@ const DestinationRecco = () => {
     };
 
     useEffect(() => {
-        // Empfehlungen aus dem localStorage laden
+        // load saved Recommendations from localStorage
         const savedRecommendations = localStorage.getItem('recommendations');
         if (savedRecommendations) {
             setRecommendations(JSON.parse(savedRecommendations));
@@ -277,7 +279,7 @@ const DestinationRecco = () => {
                 <div className="mt-4 mb-4"><strong>Selected Budget:</strong> {budgetOption ? budgetOption : "None"}</div>
                 <div className="mt-4 mb-10"><strong>Selected Location:</strong> {location ? location : "None"}</div>
 
-                {/* Send the request Button */}
+                {/* <--------- Send the Request Button ---------> */}
                 <div className='w-full flex justify-center mb-10'>
                     <button onClick={sendPreferences} className='p-4 bg-yellow-400 rounded-xl hover:bg-black dark:hover:bg-white dark:hover:text-black dark:bg-blue-500 transition hover:text-white text-xl'>
                         Find the right Destination
@@ -296,14 +298,16 @@ const DestinationRecco = () => {
                     <p className='text-center text-red-500'>{error}</p>
                 ) : recommendations.length > 0 ? (
                     <>
-                        {/* Anzeige der Präferenzen */}
+
+                        {/* <-------- Selected Preferences --------> */}
                         <div className='mb-8'>
                             <h3 className='text-xl font-bold mb-2'>Your Selections:</h3>
                             <p><strong>Interests:</strong> {selection.length > 0 ? selection.join(", ") : "None"}</p>
                             <p><strong>Budget:</strong> {budgetOption ? budgetOption : "None"}</p>
                             <p><strong>Location:</strong> {location ? location : "None"}</p>
                         </div>
-                        {/* Empfehlungen darstellen */}
+
+                        {/* <------------ display Recommendations --------> */}
                         {recommendations.map(({ country, description, cost }) => {
                             const googleSearch = `https://www.google.com/search?q=${encodeURIComponent(country)}+Vacation`;
                             return (

@@ -1,8 +1,7 @@
 import ReactGA from 'react-ga4';
 
 export const initGA = () => {
-    ReactGA.initialize('G-GPXYFVE48N');
-    // Google Analytics Measurement ID
+    ReactGA.initialize('G-GPXYFVE48N'); // ** GA4-ID **
 };
 
 export const sendGAEvent = (eventName, eventParams = {}) => {

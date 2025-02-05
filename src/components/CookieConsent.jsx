@@ -12,11 +12,11 @@ const CookieConsent = ({ onAccept }) => {
                     border: "1px solid",
                     width: "100%",
                     maxWidth: "1200px",
-                    position: "fixed",   // Stellt sicher, dass es unten bleibt
-                    bottom: "20px",      // Abstand vom unteren Rand
-                    left: "50%",         // Positioniert das Element in der Mitte
-                    transform: "translateX(-50%)", // Korrigiert die Ausrichtung
-                    borderRadius: "10px", // Abrundung der Ecken
+                    position: "fixed",
+                    bottom: "20px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    borderRadius: "10px",
                     padding: "16px",
                     margin: " 50px 0 50px 0"
                 }}

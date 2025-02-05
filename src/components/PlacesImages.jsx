@@ -23,7 +23,7 @@ const PlacesImages = ({ place }) => {
                         "height": 3264,
                     },
                     headers: {
-                        Authorization: 'Client-ID AYCnup-u98ZSiTrvKHf-osexumSFd7XCG4TZ7utphTc', // Ersetze durch deinen Access Key
+                        Authorization: `Client-ID ${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}`, // Unsplash API Key
                     },
                 });
                 setImages(response.data.results);

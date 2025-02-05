@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const GoogleMap = ({ countryName }) => {
     const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 });
-    const API_KEY = "DEIN_GOOGLE_MAPS_API_KEY"; // 🔥 Ersetze mit deinem API Key
+    const API_KEY = "DEIN_GOOGLE_MAPS_API_KEY"; // Google Maps API-Key
 
     useEffect(() => {
         const fetchCoordinates = async () => {

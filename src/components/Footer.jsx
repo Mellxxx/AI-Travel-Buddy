@@ -8,7 +8,7 @@ import { faInstagram, faFacebook, faYoutube } from "@fortawesome/free-brands-svg
 const Footer = () => {
     return (
         <div className=' w-full pb-5'>
-            <div className='px-6 sm:px-[6vw] md:px-[8vw] lg:px-[10vw] flex flex-col sm:grid grid-cols-[1fr_1fr_1fr_1fr] px-8 pt-10 sm:px-[5ve] md:px-[7vw] lg:px-[9vw] gap-14 my-10 mt-40 text-sm'>
+            <div className='px-6 sm:px-[6vw] md:px-[8vw] lg:px-[10vw] flex flex-col sm:grid grid-cols-[1fr_1fr_1fr] px-8 pt-10 sm:px-[5ve] md:px-[7vw] lg:px-[9vw] gap-14 my-10 mt-40 text-sm'>
 
                 <div>
                     <div className='flex flex-row gap-4 items-center'>
@@ -40,7 +40,9 @@ const Footer = () => {
                     </ul>
                 </div>
 
-                <div>
+
+                {/* Social Media Icons */}
+                {/* <div>
                     <p className='font-kursive mb-6'>Social Meida</p>
 
                     <a href="#">
@@ -52,12 +54,11 @@ const Footer = () => {
                     <a href="#">
                         <FontAwesomeIcon icon={faYoutube} size="2x" className='ml-4 text-[--light]' />
                     </a>
-                </div>
+                </div> */}
 
             </div>
 
             <div className=''>
-                <h1></h1>
                 <hr className='color-[#F7DB3B]'></hr>
                 <p className='mt-5 text-sm text-center text-[--light]'>© Webaffinity e.U. | 2025 all rights reserved</p>
             </div>

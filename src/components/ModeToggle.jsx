@@ -1,12 +1,12 @@
 import React, { createContext, forwardRef, useContext, useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
-import { Button } from "@/components/ui/button"; // Korrektes Importieren des Buttons
+import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"; // Importiere DropdownMenu von shadcn-ui
+} from "@/components/ui/dropdown-menu";
 import { useTheme } from "@/utils/ThemeProvider";
 
 const ModeToggle = forwardRef((props, ref) => {

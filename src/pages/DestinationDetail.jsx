@@ -17,9 +17,9 @@ import PlaceRecommendations from "../components/PlaceRecommendations";
 
 
 const DestinationDetail = () => {
-    const { country } = useParams(); // Der Parameter aus der URL
+    const { country } = useParams();
     const [countryData, setCountryData] = useState(null);
-    const location = useLocation(); // Abrufen der State-Werte aus der Navigation
+    const location = useLocation();
     const [description, setDescription] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -37,12 +37,11 @@ const DestinationDetail = () => {
                 setLoading(true);
                 setError(null);
 
-                // Abrufen des Landes von der Rest Countries API (V2)
+                // Request from "Rest Countries API (V2)""
                 const response = await fetch(`https://restcountries.com/v2/name/${encodeURIComponent(country)}`);
                 if (!response.ok) throw new Error(`Can not provide Information for: ${country}`);
                 const data = await response.json();
 
-                // Da die API ein Array zurückgibt, nehmen wir das erste Ergebnis
                 setCountryData(data[0]);
             } catch (err) {
                 setError(err.message);

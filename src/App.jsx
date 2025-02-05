@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-// import ScrollToTop from './components/ScrollToTop';
-import Footer from './components/Footer';
+
+
+// shadcn/ui Imports
 import { ThemeProvider } from './utils/ThemeProvider';
 import {
   Tooltip,
@@ -9,7 +10,9 @@ import {
   TooltipTrigger,
   TooltipProvider,
 } from "./components/ui/tooltip";
-import ScrollToTop from './components/ScrollToTop';
+
+
+// GA4
 import { initGA, logPageView } from './utils/analytics';
 
 
@@ -17,6 +20,9 @@ import { initGA, logPageView } from './utils/analytics';
 import ModeToggle from './components/ModeToggle';
 import CookieConsent from './components/CookieConsent';
 import DonatePopup from './components/DonatePopup';
+import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
+
 
 // Pages Imports
 import DestinationRecco from './pages/DestinationRecco';
@@ -32,6 +38,7 @@ import Home from './pages/Home';
 
 function App() {
 
+  // Initialize GA4 start 
   const location = useLocation();
   const [gaInitialized, setGaInitialized] = useState(false);
 
@@ -57,6 +64,7 @@ function App() {
       logPageView();
     }
   };
+  // Initialize GA4 end
 
 
   return (
