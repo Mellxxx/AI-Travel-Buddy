@@ -72,6 +72,7 @@ const SiteNotice = () => {
             </Table>
             <p className='text-sm text-[--light] mt-4'>Flags (c) <a href="https://flagicons.lipis.dev/">flagicons</a></p>
             <p className='text-sm text-[--light] mt-0'>Icons (c) <a href="https://openfontlicense.org/">Font Awesome</a></p>
+            <p className='text-sm text-[--light] mt-0'>Images (c) <a href="https://unsplash.com">Unsplash</a></p>
 
 
 

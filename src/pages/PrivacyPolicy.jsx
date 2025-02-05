@@ -9,7 +9,7 @@ const PrivacyPolicy = () => {
             <p className='text-sm text-[--light]'>Here at Webaffinity protecting the personal data of our customers and their end-users is, and has always been, of the utmost priority.</p>
 
             <h2 className='mt-14 mb-8'>Preamble</h2>
-            <p className='text-sm text-[--light] mb-6'>This policy details how Webaffinity (or “we” or “us”) and the associated website treat the personal information that we collect, what settings we provide for you to control how your information is used on Webaffinity, and how you can contact us with any questions or concerns. This policy is not a contract between Webaffinity and its users, but is merely a recitation of Webaffinity’s policies. Please read this policy carefully to understand our policies and practices regarding your information and how we will treat it. This policy may change from time to time, so please check the policy periodically for updates.</p>
+            <p className='text-sm text-[--light] mb-6'>This policy details how Webaffinity (or “we” or “us”) and the associated websites treat the personal information that we collect, what settings we provide for you to control how your information is used on Webaffinity, and how you can contact us with any questions or concerns. This policy is not a contract between Webaffinity and its users, but is merely a recitation of Webaffinity’s policies. Please read this policy carefully to understand our policies and practices regarding your information and how we will treat it. This policy may change from time to time, so please check the policy periodically for updates.</p>
 
             <h2 className='mt-14 mb-8'>How we collect personal information</h2>
             <p className='text-sm text-[--light] mb-4'>This policy describes the types of information we may collect from you or that you may provide when you visit the websites travel-buddy.com or any of their affiliated websites (our “Website”) and our practices for collecting, using, maintaining, protecting, and disclosing that information. It also applies to information we collect:</p>
@@ -126,7 +126,7 @@ const PrivacyPolicy = () => {
                 <li>Withdraw consent for data processing.</li>
             </ul>
             <p className='text-sm text-[--light] mb-4'>
-                To exercise these rights, email <a href='mailto:support@webaffinity.at' className='underline text-black dark:text-white'>support@webaffinity.at</a> with your name (, company,) and email.
+                To exercise these rights, email <a href='mailto:support@webaffinity.at' className='underline text-black dark:text-white'>support@ai-travel-buddy.at</a> with your name (, company,) and email.
             </p>
             <p className='text-sm text-[--light] mb-8'>
                 Note: Deleting personal data also deletes your user account, which may affect services like communications and purchases.
@@ -134,12 +134,12 @@ const PrivacyPolicy = () => {
 
             <h2 className='mt-14 mb-8'>Data Processing Officer</h2>
             <p className='text-sm text-[--light] mb-4'>
-                You can contact the Webaffinity Data Processing Officer at <a href='mailto:support@Webaffinity.com' className='underline text-black dark:text-white'>support@webaffinity.at</a>.
+                You can contact the Webaffinity Data Processing Officer at <a href='mailto:support@ai-travel-buddy.com' className='underline text-black dark:text-white'>support@ai-travel-buddy.at</a>.
             </p>
 
             <h2 className='mt-14 mb-8'>Contact Information</h2>
             <p className='text-sm text-[--light] mb-4'>
-                If you have questions, contact us at <a href='mailto:support@webaffinity.at' className='underline text-black dark:text-white'>support@webaffinity.at</a> or at:
+                If you have questions, contact us at <a href='mailto:support@ai-travel-buddy.at' className='underline text-black dark:text-white'>support@ai-travel-buddy.at</a> or at:
             </p>
             <p className='text-sm text-[--light] mb-4'>
                 Webaffinity e.U.<br />

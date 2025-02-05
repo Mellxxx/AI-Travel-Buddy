@@ -32,7 +32,7 @@ const CookiePolicy = () => {
             <p className='text-sm text-[--light] mb-4'>
 
                 <strong className='dark:text-white text-black'>Web Browsers: </strong>
-                When you access XEOX via a web browser, you can alter the settings to change cookie preferences. You can control cookies in the particular browser by using the following links:</p>
+                When you access AI Travel Buddy via a web browser, you can alter the settings to change cookie preferences. You can control cookies in the particular browser by using the following links:</p>
 
             <p className='text-sm '><a target="_blank" href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop?redirectslug=enable-and-disable-cookies-website-preferences&redirectlocale=en-US">Firefox</a></p>
             <p className='text-sm '><a target="_blank" href="https://support.google.com/chrome/answer/95647?co=GENIE.Platform%3DDesktop&hl=en">Google Chrome</a></p>
