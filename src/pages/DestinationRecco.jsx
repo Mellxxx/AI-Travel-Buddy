@@ -10,11 +10,14 @@ import {
     TooltipTrigger,
     TooltipProvider,
 } from "../components/ui/tooltip";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import confetti from "canvas-confetti";
+
 
 import { sendGAEvent } from "../utils/analytics";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL;
-
 
 const DestinationRecco = () => {
     const options = [
@@ -62,6 +65,15 @@ const DestinationRecco = () => {
 
     // refrences for initial load
     const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+    // Refrences for scrolling
+    const targetRef = useRef(null);
+    const interestsRef = useRef(null);
+
+    // Error State and Dialog
+    const [showDialog, setShowDialog] = useState(false);
+
+
 
     // ***** recieve prefrences from "localStorage" *****
     useEffect(() => {
@@ -136,6 +148,26 @@ const DestinationRecco = () => {
 
     const selection = [...customOptions, ...selectedOptions].filter(Boolean)
 
+    const handleButtonClick = () => {
+        if (selectedOptions.length === 0) {
+            setShowDialog(true); // open dialog
+            return;
+        }
+
+        if (budgetOption === null) {
+            setShowDialog(true); // open dialog
+            return;
+        }
+
+        sendPreferences();
+    };
+
+    const handleClose = () => {
+        setShowDialog(false);
+
+        // after closing dialog scroll to selection
+        interestsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
 
     // ***********  Sending Request to the Server and Recieving Answer  ************
     const sendPreferences = async () => {
@@ -144,6 +176,8 @@ const DestinationRecco = () => {
             budget: budgetOption,
             location: location
         };
+
+        targetRef.current?.scrollIntoView({ behavior: "smooth" });
 
         try {
             setIsLoading(true);
@@ -172,6 +206,8 @@ const DestinationRecco = () => {
 
             // save Recommendations in localStorage
             localStorage.setItem('recommendations', JSON.stringify(data.recommendations));
+
+            fireConfetti();
 
             // GA-4 Tracking Event
             sendGAEvent("api_success", {
@@ -203,6 +239,16 @@ const DestinationRecco = () => {
         }
     }, []);
 
+
+    // Konfetti animation
+    const fireConfetti = () => {
+        confetti({
+            particleCount: 150, // Anzahl der Partikel
+            spread: 90, // Wie breit das Konfetti streut
+            origin: { y: 0.6 } // Startpunkt (leicht über der Mitte)
+        });
+    };
+
     return (
         <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] mt-0 pt-5'>
 
@@ -214,7 +260,7 @@ const DestinationRecco = () => {
             {/* <------ Countrys Animation -------> */}
             <FlagMarquee />
 
-            <h2 className='text-center text-2xl mb-4 mt-4'>Select your Interests:</h2>
+            <h2 className='text-center text-2xl mb-4 mt-4' ref={interestsRef} >Select your Interests:</h2>
             <p className='text-[--light] text-center'>AI can evaluate your perfect Vacation Destination based on your preferences. Get inspired.</p>
 
             {/* Container for higher Margin */}
@@ -247,7 +293,7 @@ const DestinationRecco = () => {
 
                 {/* <------- Select Residence -------> */}
                 <div className='mt-8 mb-8'>
-                    <label className="mr-4 mb-4" htmlFor="residence">Select your current residence:</label>
+                    <label className="mr-4 mb-4" htmlFor="residence">Select your current residence: <span className='text-[--light]'>optional</span></label>
 
                     <select
                         className="p-2 border-2 border-grey-300 rounded-md dark:bg-[#060e22] dark:border-gray-600 dark:text-white"
@@ -281,27 +327,49 @@ const DestinationRecco = () => {
 
                 {/* <--------- Send the Request Button ---------> */}
                 <div className='w-full flex justify-center mb-10'>
-                    <button onClick={sendPreferences} className='p-4 bg-yellow-400 rounded-xl hover:bg-black dark:hover:bg-white dark:hover:text-black dark:bg-blue-500 transition hover:text-white text-xl'>
+                    <button onClick={handleButtonClick} className='p-4 bg-yellow-400 rounded-xl hover:bg-black dark:hover:bg-white dark:hover:text-black dark:bg-blue-500 transition hover:text-white text-xl'>
                         Find the right Destination
                     </button>
                 </div>
+
+                {/* Dialog popup error */}
+                <Dialog open={showDialog} onOpenChange={setShowDialog}>
+                    <DialogContent className="max-w-md">
+                        <DialogHeader>
+                            <DialogTitle className="text-red-500">Missing Selection</DialogTitle>
+                            <DialogDescription>
+                                Please select at least one Interest and your Budget!
+                            </DialogDescription>
+                        </DialogHeader>
+                        <DialogFooter>
+                            <Button onClick={handleClose}>OK</Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
             </div>
 
             {/* <-------- Results  --------> */}
-            <h2 className='text-center text-2xl md:text-4xl mb-8'>Matching Results:</h2>
+            <h2 className='text-center text-2xl md:text-4xl mb-8' ref={targetRef}>Matching Results:</h2>
             <div className='md:p-10 p-4 rounded-xl bg-slate-100 mb-20 dark:bg-[#060e22] dark:border-gray-600 dark:text-white'>
                 {isLoading ? (
-                    <div className='flex justify-center items-center'>
-                        <div className='loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-16 w-16'></div>
-                    </div>
+                    <>
+                        {Array(5)
+                            .fill(0)
+                            .map((_, index) => (
+                                <div
+                                    className="bg-white dark:bg-[#060e22] p-4 rounded-lg shadow-md border mb-8 h-[200px] w-full animate-pulse bg-slate-100 dark:bg-blue-900 aspect-square"
+                                    key={index}
+                                ></div>
+                            ))}
+                    </>
                 ) : error ? (
+
                     <p className='text-center text-red-500'>{error}</p>
                 ) : recommendations.length > 0 ? (
                     <>
 
                         {/* <-------- Selected Preferences --------> */}
                         <div className='mb-8'>
-                            <h3 className='text-xl font-bold mb-2'>Your Selections:</h3>
                             <p><strong>Interests:</strong> {selection.length > 0 ? selection.join(", ") : "None"}</p>
                             <p><strong>Budget:</strong> {budgetOption ? budgetOption : "None"}</p>
                             <p><strong>Location:</strong> {location ? location : "None"}</p>

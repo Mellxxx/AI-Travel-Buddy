@@ -16,7 +16,7 @@ const Footer = () => {
                         <p className='md:text-xl text-lg'>Webaffinity e.U.</p>
                     </div>
                     <p className='font-kursive text-[--light] mb-0 mt-4'>Company Reg-No.: FN631285K</p>
-                    <p className='font-kursive text-[--light] mb-0'>support@ai-travel-buddy.com</p>
+                    <p className='font-kursive text-[--light] mb-0'>mueller.thomas@ai-travel-buddy.com</p>
                     <p className='font-kursive text-[--light] mb-0'>+43-676-89807433</p>
                 </div>
                 <div >
@@ -34,7 +34,7 @@ const Footer = () => {
                     <ul className="flex flex-col gap-1">
                         <Link to={"/"}><li className='text-[--light] cursor-pointer'>About AI Travel Buddy</li></Link>
                         <Link to={"/find-destination"}><li className='text-[--light] cursor-pointer'>Find Destination</li></Link>
-                        <a href='mailto:support@ai-travel-buddy.com'><li className='text-[--light] cursor-pointer'>Report Problem</li></a>
+                        <a href='mailto:mueller.thomas@ai-travel-buddy.com'><li className='text-[--light] cursor-pointer'>Report Problem</li></a>
                         {/* <Link to={"/gtc"}><li className='text-[--light] cursor-pointer'>Customer Support</li></Link> */}
                         {/* <Link to={"/cookie-policy"}><li className='text-[--light] cursor-pointer'>FAQ</li></Link> */}
                     </ul>

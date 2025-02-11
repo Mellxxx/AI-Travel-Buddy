@@ -112,3 +112,8 @@ body {
 #slider>div {
   scroll-snap-align: center;
 }
+
+a.active {
+  background-color: black;
+  color: white;
+}

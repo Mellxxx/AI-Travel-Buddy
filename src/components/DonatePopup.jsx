@@ -9,7 +9,7 @@ const DonationPopup = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowPopup(true);
-        }, 120000); // Popup after 1 Minute
+        }, 120000);
 
         return () => clearTimeout(timer);
     }, []);
@@ -20,7 +20,7 @@ const DonationPopup = () => {
                 <DialogHeader>
                     <DialogTitle className="text-3xl">Consider Donating</DialogTitle>
                     <DialogDescription className="text-gray-500">
-                        <div className="bg:slate-200 dark:bg-[#060e22] p-4 rounded-xl">
+                        <div className="bg-slate-100 dark:bg-[#060e22] p-4 rounded-xl">
                             <div className="flex flex-row bg:slate-200 dark:bg-[#060e22] rounded-lg items-center mb-4">
                                 <img src={Thomas} alt="" className="w-14 h-14 mr-4" />
                                 <p>Thomas form AI Travel Agent</p>

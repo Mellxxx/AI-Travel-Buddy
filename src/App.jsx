@@ -17,11 +17,11 @@ import { initGA, logPageView } from './utils/analytics';
 
 
 // Components Imports
-import ModeToggle from './components/ModeToggle';
 import CookieConsent from './components/CookieConsent';
 import DonatePopup from './components/DonatePopup';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import Header from "./components/Header";
 
 
 // Pages Imports
@@ -33,7 +33,9 @@ import Gtm from './pages/Gtm';
 import DestinationDetail from './pages/DestinationDetail';
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
-
+import Login from './pages/Login';
+import Itineraries from './pages/Itineraries';
+import CreateItinerarie from './pages/CreateItinerarie';
 
 
 function App() {
@@ -76,9 +78,7 @@ function App() {
         <CookieConsent onAccept={handleAcceptCookies} />
         <DonatePopup />
         <TooltipProvider>
-          <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] mt-0 pt-5'>
-            <ModeToggle />
-          </div>
+          <Header />
           <Routes>
             <Route path="/find-destination" element={<DestinationRecco />} />
             <Route path="/site-notice" element={<SiteNotice />} />
@@ -88,6 +88,9 @@ function App() {
             <Route path="destination/:country" element={<DestinationDetail />} />
             <Route path='/' element={<Home />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/itineraries" element={<Itineraries />} />
+            <Route path='/create-itinerary' element={<CreateItinerarie />} />
           </Routes>
           <Footer />
         </TooltipProvider>

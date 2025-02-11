@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 // Shadcn/ui Imports
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -9,6 +10,8 @@ import {
     TooltipTrigger,
     TooltipProvider,
 } from "../components/ui/tooltip";
+import { ArrowLeft } from "lucide-react";
+
 
 // Components Imports
 import Flights from '@/components/Flights';
@@ -62,11 +65,19 @@ const DestinationDetail = () => {
 
     return (
         <div className='px-8 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] mt-0 pt-5'>
+            <Link to="/find-destination">
+                <div className='p-2 rounded hover:bg-slate-100 w-[200px] dark:hover:bg-[--test] transition'>
+                    <div className='flex flex-row items-center gap-0'>
+                        <ArrowLeft className='text-[--light]'></ArrowLeft>
+                        <p className='text-[--light]'>back to Countries-List</p>
+                    </div>
+                </div>
+            </Link>
             <div className='flex flex-row items-center justify-between mb-4'>
                 <h1 className='text-4xl md:text-5xl lg:text-6xl mr-4'>{name}</h1>
                 <img src={flags.svg} alt={`${name} Flag`} className='w-20 md:w-40' />
             </div>
-            <p className='mb-4 text-base text-[--light]'>{description || "No description provided."}</p>
+            <p className='mb-4 text-xl text-[--light]'>{description || "No description provided."}</p>
             <div className='flex flex-row items-center text-green-500 mb-10'>
                 <p className='text-green-500 mr-2 text-xl'>{cost}</p>
                 <Tooltip>

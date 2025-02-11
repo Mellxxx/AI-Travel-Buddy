@@ -1,6 +1,16 @@
 import { useEffect, useState } from "react";
 import PlacesImages from "./PlacesImages";
 
+import { Button } from "./ui/button";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+    TooltipProvider,
+} from "../components/ui/tooltip";
+
+
+
 import { sendGAEvent } from "../utils/analytics";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL;
@@ -80,7 +90,7 @@ const PlaceRecommendations = ({ country }) => {
     }, [country]);
 
     return (
-        <div className="mt-10">
+        <div className="mt-10 m-[-15px]">
             {loading &&
                 Array(6)
                     .fill(0)
@@ -101,7 +111,18 @@ const PlaceRecommendations = ({ country }) => {
                     return (
 
                         <div key={index} className="bg-white dark:bg-[#060e22] p-6 rounded-lg shadow-md border mb-8">
-                            <h3 className="text-3xl mb-4">{place.place}</h3>
+                            <div className="flex w-full flex-row hidden md:flex justify-between ">
+                                <h3 className="text-3xl mb-4">{place.place}</h3>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <Button className="cursor-not-allowed">create Itinerary</Button>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        This Feature will be available soon
+                                    </TooltipContent>
+                                </Tooltip>
+                            </div>
+                            <h3 className="text-3xl mb-4 md:hidden">{place.place}</h3>
                             <p className="text-[--light] mb-4">{place.description}</p>
                             <p>
                                 <a href={googleSearch} target='_blank' rel='noopener noreferrer' className='underline text-blue-500'>
