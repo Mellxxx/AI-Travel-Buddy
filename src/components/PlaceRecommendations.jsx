@@ -13,6 +13,7 @@ import Map from "./Map";
 import WeatherComponent from "./WeatherComponent";
 
 import { sendGAEvent } from "../utils/analytics";
+import MapSmall from "./MapSmall";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -128,12 +129,17 @@ const PlaceRecommendations = ({ country }) => {
                                 <div>
                                     <PlacesImages place={place.place} className=""></PlacesImages>
                                 </div>
-                                <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
+                                <div className="grid grid-cols-2 gap-6">
                                     <div className="rounded-3xl overflow-hidden border-white dark:border-[#020817]">
-                                        <Map location={place.place}></Map>
+                                        <div className="hidden md:block">
+                                            <Map location={place.place} className="hidden md:block"></Map>
+                                        </div>
+                                        <div className="md:hidden">
+                                            <MapSmall location={place.place} className="md:hidden"></MapSmall>
+                                        </div>
                                     </div>
-                                    <div className="flex md:flex-col flex-row h-full gap-6">
-                                        <div className="bg-slate-100 md:h-auto h-[100px] rounded-xl dark:bg-[#111e41] p-4 h-full">
+                                    <div className="flex flex-col h-full gap-6">
+                                        <div className="bg-slate-100 md:h-auto h-[100px] rounded-xl dark:bg-[#111e41] md:p-4 h-full">
                                             <WeatherComponent location={place.place}></WeatherComponent>
                                         </div>
                                         <div className="bg-slate-100 dark:bg-[#111e41] rounded-xl p-4 w-full h-full"></div>

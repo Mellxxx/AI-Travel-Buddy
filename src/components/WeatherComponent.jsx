@@ -49,9 +49,9 @@ const WeatherComponent = ({ location }) => {
                     <p className="text-2xl text-slate-600 dark:text-slate-300">{weather.temp}°C</p>
                     <img src={weather.icon} alt="Wetter Icon" className="w-14 h-14 mr-3" />
                 </div>
-                <p className="text-md  text-slate-600 dark:text-slate-300">{weather.condition}</p>
-                <p className="text-sm text-slate-600 dark:text-slate-300">Wind: {weather.wind} km/h</p>
-                <p className="text-sm text-slate-600 dark:text-slate-300">Humidity: {weather.humidity}%</p>
+                <p className="text-md text-slate-600 dark:text-slate-300">{weather.condition}</p>
+                <p className="text-sm text-slate-600 dark:text-slate-300 md:block hidden">Wind: {weather.wind} km/h</p>
+                <p className="text-sm text-slate-600 dark:text-slate-300 md:block hidden">Humidity: {weather.humidity}%</p>
                 <a href="https://www.weatherapi.com/" target="_blank">
                     <p className="underline text-sm text-[--light] dark:text-slate-500 cursor-pointer">www.weatherapi.com</p>
                 </a>

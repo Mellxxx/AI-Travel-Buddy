@@ -97,9 +97,8 @@ const DestinationDetail = () => {
 
             </div>
             <CountryImages countryName={name} />
-            <Map location={name} zoom={-50} />
             <h2 className='text-[--light] text-md mb-4 mt-8'>General Information:</h2>
-            <Table>
+            <Table className="mb-8">
                 <TableBody className="text-md">
 
                     <TableRow >
@@ -139,6 +138,8 @@ const DestinationDetail = () => {
 
                 </TableBody>
             </Table>
+            <Map location={name} zoom={-50} />
+
             <h2 className="mt-20 text-3xl mb-2">Recommended Places in {name}</h2>
             <p className='text-[--light] mb-8'>Based on your preferences, intrests and budget: These are the Places you have to see</p>
             <PlaceRecommendations country={name} />

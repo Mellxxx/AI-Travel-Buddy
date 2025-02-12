@@ -5,7 +5,7 @@ const MAPS_API_KEY = import.meta.env.VITE_MAPS_API_KEY;
 
 const mapContainerStyle = {
     width: "100%",
-    height: "320px",
+    height: "200px",
     borderRadius: "20px", // 🎨 Runde Ecken
     overflow: "hidden", // Wichtig für die Abrundung
 };
@@ -24,7 +24,7 @@ const mapOptions = {
 
 const defaultCenter = { lat: 48.2082, lng: 16.3738 }; // Wien als Fallback
 
-const MapComponent = ({ location }) => {
+const MapSmall = ({ location }) => {
     const [coordinates, setCoordinates] = useState(defaultCenter);
     const { isLoaded } = useJsApiLoader({ googleMapsApiKey: MAPS_API_KEY });
 
@@ -61,4 +61,4 @@ const MapComponent = ({ location }) => {
     );
 };
 
-export default MapComponent;
+export default MapSmall;
