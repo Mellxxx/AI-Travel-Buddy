@@ -9,7 +9,8 @@ import {
     TooltipProvider,
 } from "../components/ui/tooltip";
 
-
+import Map from "./Map";
+import WeatherComponent from "./WeatherComponent";
 
 import { sendGAEvent } from "../utils/analytics";
 
@@ -110,9 +111,9 @@ const PlaceRecommendations = ({ country }) => {
 
                     return (
 
-                        <div key={index} className="bg-white dark:bg-[#060e22] p-6 rounded-lg shadow-md border mb-8">
+                        <div key={index} className="bg-white dark:bg-[#060e22] p-6 rounded-3xl border mb-8">
                             <div className="flex w-full flex-row hidden md:flex justify-between ">
-                                <h3 className="text-3xl mb-4">{place.place}</h3>
+                                <h3 className="text-5xl">{place.place}</h3>
                                 <Tooltip>
                                     <TooltipTrigger asChild>
                                         <Button className="cursor-not-allowed">create Itinerary</Button>
@@ -123,13 +124,25 @@ const PlaceRecommendations = ({ country }) => {
                                 </Tooltip>
                             </div>
                             <h3 className="text-3xl mb-4 md:hidden">{place.place}</h3>
-                            <p className="text-[--light] mb-4">{place.description}</p>
-                            <p>
-                                <a href={googleSearch} target='_blank' rel='noopener noreferrer' className='underline text-blue-500'>
-                                    "{place.place} Vacation" Google results
-                                </a>
-                            </p>
-                            <PlacesImages place={place.place} className="mt-4"></PlacesImages>
+                            <div className="grid md:grid-cols-2 grid-cols-1 gap-6 mt-8">
+                                <div>
+                                    <PlacesImages place={place.place} className=""></PlacesImages>
+                                </div>
+                                <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
+                                    <div className="rounded-3xl overflow-hidden border-white dark:border-[#020817]">
+                                        <Map location={place.place}></Map>
+                                    </div>
+                                    <div className="flex md:flex-col flex-row h-full gap-6">
+                                        <div className="bg-slate-100 md:h-auto h-[100px] rounded-xl dark:bg-[#111e41] p-4 h-full">
+                                            <WeatherComponent location={place.place}></WeatherComponent>
+                                        </div>
+                                        <div className="bg-slate-100 dark:bg-[#111e41] rounded-xl p-4 w-full h-full"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="rounded-3xl dark:bg-[#111e41] bg-slate-100 p-4 px-6 mt-6">
+                                <p className="dark:text-slate-300 mb-4 lg:text-lg">{place.description}</p>
+                            </div>
                         </div>
                     )
                 })}

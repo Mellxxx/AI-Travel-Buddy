@@ -17,6 +17,7 @@ import { ArrowLeft } from "lucide-react";
 import Flights from '@/components/Flights';
 import CountryImages from "../components/CountryImages";
 import PlaceRecommendations from "../components/PlaceRecommendations";
+import Map from '@/components/Map';
 
 
 const DestinationDetail = () => {
@@ -74,7 +75,7 @@ const DestinationDetail = () => {
                 </div>
             </Link>
             <div className='flex flex-row items-center justify-between mb-4'>
-                <h1 className='text-4xl md:text-5xl lg:text-6xl mr-4'>{name}</h1>
+                <h1 className='text-5xl md:text-6xl lg:text-6xl mr-4'>{name}</h1>
                 <img src={flags.svg} alt={`${name} Flag`} className='w-20 md:w-40' />
             </div>
             <p className='mb-4 text-xl text-[--light]'>{description || "No description provided."}</p>
@@ -96,7 +97,8 @@ const DestinationDetail = () => {
 
             </div>
             <CountryImages countryName={name} />
-            <h2 className='text-[--light] text-md mb-4'>General Information:</h2>
+            <Map location={name} zoom={-50} />
+            <h2 className='text-[--light] text-md mb-4 mt-8'>General Information:</h2>
             <Table>
                 <TableBody className="text-md">
 

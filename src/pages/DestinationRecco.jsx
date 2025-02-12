@@ -293,7 +293,7 @@ const DestinationRecco = () => {
 
                 {/* <------- Select Residence -------> */}
                 <div className='mt-8 mb-8'>
-                    <label className="mr-4 mb-4" htmlFor="residence">Select your current residence: <span className='text-[--light]'>optional</span></label>
+                    <label className="mr-4 mb-4" htmlFor="residence">Select your <span className='font-bold'>current</span> residence: <span className='text-[--light]'>optional</span></label>
 
                     <select
                         className="p-2 border-2 border-grey-300 rounded-md dark:bg-[#060e22] dark:border-gray-600 dark:text-white"

@@ -39,7 +39,7 @@ const PlacesImages = ({ place }) => {
 
     return (
         <div>
-            <div className='grid grid-cols-5 gap-2 mt-4 hidden md:grid'>
+            <div className='grid grid-cols-5 gap-2 mt-4 hidden md:hidden'>
                 {loading &&
                     Array(5) // Platzhalter für 6 Skelette
                         .fill(0)
@@ -67,24 +67,24 @@ const PlacesImages = ({ place }) => {
                     ))}
             </div>
 
-            <div className='mt-4 md:hidden'>
+            <div className=''>
                 <div className="w-full max-w-4xl mx-auto">
-                    <div id="slider" className="flex overflow-x-scroll space-x-8 rounded-lg shadow-lg no-scrollbar">
+                    <div id="slider" className="flex overflow-x-scroll space-x-8 rounded-3xl no-scrollbar">
                         {loading &&
                             Array(2)
                                 .fill(0)
                                 .map((_, index) => (
-                                    <div className="flex-shrink-0 w-full w-3/4 scroll-ml-6 relative w-full overflow-hidden rounded-lg animate-pulse bg-slate-100 dark:bg-blue-900 aspect-square" key={index}></div>
+                                    <div className="flex-shrink-0 w-full w-full scroll-ml-4 relative w-full overflow-hidden rounded-3xl  animate-pulse bg-slate-100 dark:bg-blue-900 aspect-square" key={index}></div>
                                 ))
                         }
                         {!loading &&
                             images.map((image) => (
-                                <div key={image.id} className="flex-shrink-0 w-full w-3/4 scroll-ml-6">
+                                <div key={image.id} className="flex-shrink-0 scroll-ml-2">
                                     <img
                                         key={image.id}
                                         src={image.urls.small}
                                         alt={image.alt_description}
-                                        className='w-full h-[300px] object-cover rounded-lg' />
+                                        className='w-full h-[320px] object-cover rounded-3xl' />
                                 </div>
                             ))}
                     </div>
