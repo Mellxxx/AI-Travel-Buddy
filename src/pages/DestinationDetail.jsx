@@ -12,6 +12,7 @@ import {
 } from "../components/ui/tooltip";
 import { ArrowLeft } from "lucide-react";
 
+import safetyRatings from "../assets/safetyRatings";
 
 // Components Imports
 import Flights from '@/components/Flights';
@@ -63,6 +64,17 @@ const DestinationDetail = () => {
     if (error) return <div className='px-8 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] mt-0 pt-5'><p>Error: {error}</p></div>;
 
     const { name, capital, region, population, area, timezones, languages, currencies, flags, maps } = countryData;
+
+    // Country Safety Index
+    const countrySafety = safetyRatings.find((item) => item.country === name);
+
+    // Country Safety Index based Color
+    const getSafetyColor = (rating) => {
+        if (rating <= 33) return "text-red-500";
+        if (rating <= 66) return "text-orange-500";
+        return "text-green-500";
+    };
+
 
     return (
         <div className='px-8 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] mt-0 pt-5'>
@@ -135,7 +147,12 @@ const DestinationDetail = () => {
                         <TableCell>Currencie(s):</TableCell>
                         <TableCell>{currencies.map(curr => `${curr.name} (${curr.code})`).join(', ')}</TableCell>
                     </TableRow>
-
+                    <TableRow >
+                        <TableCell className="text-lg font-semibold">Safety Rating:</TableCell>
+                        <TableCell className={`${getSafetyColor(countrySafety?.rating || 0)} text-lg font-semibold`}>
+                            {countrySafety ? `${countrySafety.rating}/100` : "No data available"}
+                        </TableCell>
+                    </TableRow>
                 </TableBody>
             </Table>
             <Map location={name} zoom={-50} />
