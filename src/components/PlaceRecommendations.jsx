@@ -14,6 +14,7 @@ import WeatherComponent from "./WeatherComponent";
 
 import { sendGAEvent } from "../utils/analytics";
 import MapSmall from "./MapSmall";
+import TemperatureChart from "./TemperatureChart";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL;
 
@@ -90,6 +91,7 @@ const PlaceRecommendations = ({ country }) => {
             fetchRecommendedPlaces();
         }
     }, [country]);
+
 
     return (
         <div className="mt-10 m-[-15px]">

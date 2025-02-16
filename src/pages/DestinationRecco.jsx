@@ -14,6 +14,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Button } from "@/components/ui/button";
 import confetti from "canvas-confetti";
 
+import { RotateCcw } from 'lucide-react';
+import { TreePalm } from 'lucide-react';
 
 import { sendGAEvent } from "../utils/analytics";
 
@@ -249,6 +251,14 @@ const DestinationRecco = () => {
         });
     };
 
+    // function for resetting Preferences
+    const handleReset = () => {
+        setSelectedOptions([]);
+        setCustomOptions([]);
+        setLocation(null);
+        setBudgetOption(null);
+    }
+
     return (
         <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] mt-0 pt-5'>
 
@@ -327,10 +337,21 @@ const DestinationRecco = () => {
 
                 {/* <--------- Send the Request Button ---------> */}
                 <div className='w-full flex justify-center mb-10'>
-                    <button onClick={handleButtonClick} className='p-4 bg-yellow-400 rounded-xl hover:bg-black dark:hover:bg-white dark:hover:text-black dark:bg-blue-500 transition hover:text-white text-xl'>
-                        Find the right Destination
+                    <button onClick={handleButtonClick} className='p-4 bg-yellow-400 rounded-xl hover:bg-yellow-300 dark:hover:bg-blue-600 dark:bg-blue-500 transition  text-xl'>
+                        <div className='flex flex-row gap-2'>
+                            <TreePalm /> <p>Find the right Destination</p>
+                        </div>
                     </button>
                 </div>
+
+                {/* <--------- Reset Button ---------> */}
+                <div className='w-full flex justify-center mb-10'>
+                    <Button onClick={handleReset}>
+                        <RotateCcw />
+                        Reset Preferences
+                    </Button>
+                </div>
+
 
                 {/* Dialog popup error */}
                 <Dialog open={showDialog} onOpenChange={setShowDialog}>
@@ -350,7 +371,7 @@ const DestinationRecco = () => {
 
             {/* <-------- Results  --------> */}
             <h2 className='text-center text-2xl md:text-4xl mb-8' ref={targetRef}>Matching Results:</h2>
-            <div className='md:p-10 p-4 rounded-xl bg-slate-100 mb-20 dark:bg-[#060e22] dark:border-gray-600 dark:text-white'>
+            <div className='md:p-10 p-4 rounded-xl bg-slate-200 mb-20 dark:bg-[#060e22] dark:border-gray-600 dark:text-white'>
                 {isLoading ? (
                     <>
                         {Array(5)
@@ -379,7 +400,7 @@ const DestinationRecco = () => {
                         {recommendations.map(({ country, description, cost }) => {
                             const googleSearch = `https://www.google.com/search?q=${encodeURIComponent(country)}+Vacation`;
                             return (
-                                <div onClick={() => handleCountryClick(country, description, cost)} key={country} className='mb-8 bg-slate-200 cursor-pointer border-2 dark:hover:border-white hover:border-slate-400 transition dark:bg-[#263245f7] p-4 rounded-md'>
+                                <div onClick={() => handleCountryClick(country, description, cost)} key={country} className='mb-8 bg-slate-100 cursor-pointer border-2 dark:hover:border-white hover:border-slate-400 transition dark:bg-[#263245f7] p-4 rounded-md'>
                                     <p className='text-2xl'>{country}</p>
                                     <p className='text-[--light]'>{description}</p>
                                     <div className='flex flex-row items-center text-green-500'>

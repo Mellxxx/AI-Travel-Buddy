@@ -11,6 +11,7 @@ import {
     TooltipProvider,
 } from "../components/ui/tooltip";
 import { ArrowLeft } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 import safetyRatings from "../assets/safetyRatings";
 
@@ -19,6 +20,7 @@ import Flights from '@/components/Flights';
 import CountryImages from "../components/CountryImages";
 import PlaceRecommendations from "../components/PlaceRecommendations";
 import Map from '@/components/Map';
+
 
 
 const DestinationDetail = () => {
@@ -75,14 +77,21 @@ const DestinationDetail = () => {
         return "text-green-500";
     };
 
+    // Country Safety Badge based Color
+    const getSafetyBadgeColor = (rating) => {
+        if (rating <= 33) return "bg-red-500 text-white";
+        if (rating <= 66) return "bg-orange-500 text-white";
+        return "bg-green-500 text-white";
+    };
+
 
     return (
         <div className='px-8 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] mt-0 pt-5'>
             <Link to="/find-destination">
-                <div className='p-2 rounded hover:bg-slate-100 w-[200px] dark:hover:bg-[--test] transition'>
-                    <div className='flex flex-row items-center gap-0'>
-                        <ArrowLeft className='text-[--light]'></ArrowLeft>
-                        <p className='text-[--light]'>back to Countries-List</p>
+                <div className=''>
+                    <div className='mb-8 flex flex-row items-center dark:bg-white bg-black dark:text-black text-white hover:bg-transparent w-[210px] transition cursor-pointer border-2 dark:border-white border-black p-2 rounded hover:text-black'>
+                        <ArrowLeft className=''></ArrowLeft>
+                        <p className=''>back to Countries-List</p>
                     </div>
                 </div>
             </Link>
@@ -149,8 +158,14 @@ const DestinationDetail = () => {
                     </TableRow>
                     <TableRow >
                         <TableCell className="text-lg font-semibold">Safety Rating:</TableCell>
-                        <TableCell className={`${getSafetyColor(countrySafety?.rating || 0)} text-lg font-semibold`}>
-                            {countrySafety ? `${countrySafety.rating}/100` : "No data available"}
+                        <TableCell>
+                            {countrySafety ? (
+                                <Badge className={`${getSafetyBadgeColor(countrySafety.rating)} px-3 py-1 rounded-lg`}>
+                                    {countrySafety.rating}/100
+                                </Badge>
+                            ) : (
+                                <p>No data available</p>
+                            )}
                         </TableCell>
                     </TableRow>
                 </TableBody>
