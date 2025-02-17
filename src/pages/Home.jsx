@@ -7,7 +7,7 @@ import Earth from '../assets/Earth.png'
 import FlagMarquee from "@/components/FlagMarquee";
 import Selection from "../assets/selection.png";
 import Custom from "../assets/Custom.png";
-import Country from "../assets/Country.png";
+import Country from "../assets/country.png";
 import Budget from "../assets/budget.png";
 
 const Home = () => {
