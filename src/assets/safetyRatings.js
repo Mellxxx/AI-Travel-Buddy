@@ -66,6 +66,7 @@ const safetyRatings = [
     { country: "Italy", rating: 77 },
     { country: "Japan", rating: 83 },
     { country: "Mexico", rating: 65 },
+    { country: "Morocco", rating: 54 },
     { country: "Netherlands", rating: 75 },
     { country: "New Zealand", rating: 90 },
     { country: "Norway", rating: 85 },
