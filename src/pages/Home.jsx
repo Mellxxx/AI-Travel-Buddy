@@ -5,7 +5,7 @@ import { FaPlane, FaMapMarkerAlt, FaGlobe, FaRegStar } from "react-icons/fa";
 
 import Earth from '../assets/Earth.png'
 import FlagMarquee from "@/components/FlagMarquee";
-import Selection from "../assets/Selection.png";
+import Selection from "../assets/selection.png";
 import Custom from "../assets/Custom.png";
 import Country from "../assets/Country.png";
 import Budget from "../assets/budget.png";
