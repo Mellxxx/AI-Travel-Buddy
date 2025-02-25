@@ -1,12 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
-// import { ShopContext } from '../context/ShopContext'
+import { AppContext } from '../context/AppContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import FlagMarquee from '@/components/FlagMarquee'
+import { Flag } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
 
 const Login = () => {
 
     const [currentState, setCurrentState] = useState('Login')
-    // const { token, setToken, navigate, backendUrl } = useContext(ShopContext);
+    const { token, setToken, navigate, backendUrl } = useContext(AppContext);
 
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
@@ -57,22 +61,26 @@ const Login = () => {
     }, [token])
 
     return (
-        <form onSubmit={onSubmitHandler} className='flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800'>
-            <div className='inline-flex items-center gap-2 mb-2 mt-10'>
-                <p className='prata-regular text-3xl'>{currentState}</p>
-                <hr className='border-none h-[1.5px] w-8 bg-gray-800' />
-            </div>
-            {currentState === "Login" ? "" : <input onChange={(e) => setName(e.target.value)} value={name} type="text" placeholder="Name" className='w-full px-3 py-2 border border-gray-800 rounded-sm' required />}
-            <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" placeholder="Email" className='w-full px-3 py-2 border border-gray-800 rounded-sm' required />
-            <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" placeholder="Password" className='w-full px-3 py-2 border border-gray-800 rounded-sm' required />
-            <div className='w-full flex justify-between text-sm mt-[-8px]'>
-                <p className='cursor-pointer active:underline'>Forgot Password?</p>
-                {
-                    currentState === "Login" ?
-                        <p onClick={() => setCurrentState("Sign Up")} className='cursor-pointer active:underline'>Create Account</p> : <p onClick={() => setCurrentState("Login")} className='cursor-pointer active:underline'>Login here</p>}
-            </div>
-            <button className='bg-black text-white font-light px-8 py-2 mt-4'>{currentState === "Login" ? "Sign In" : "Sign Up"}</button>
-        </form>
+        <>
+
+            <form onSubmit={onSubmitHandler} className='flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-5 gap-4'>
+                <div className='inline-flex items-center gap-2 mb-2 mt-10'>
+                    <p className=' text-3xl'>{currentState}</p>
+                </div>
+                <FlagMarquee />
+                {currentState === "Login" ? "" : <input onChange={(e) => setName(e.target.value)} value={name} type="text" placeholder="Name" className='w-full px-3 py-2 border border-gray-800 rounded-sm dark:bg-[#060e22]' required />}
+                <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" placeholder="Email" className='w-full px-3 py-2 border border-gray-800 rounded-sm dark:bg-[#060e22]' required />
+                <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" placeholder="Password" className='w-full px-3 py-2 border border-gray-800 rounded-sm dark:bg-[#060e22]' required />
+                <div className='w-full flex justify-between text-sm mt-[-8px]'>
+                    {/* <p className='cursor-pointer active:underline'>Forgot Password?</p> */}
+                    {
+                        currentState === "Login" ?
+                            <p onClick={() => setCurrentState("Sign Up")} className='cursor-pointer active:underline'>Create Account</p> : <p onClick={() => setCurrentState("Login")} className='cursor-pointer active:underline'>Login here</p>}
+                </div>
+                <Button className='bg-black text-white dark:bg-white dark:text-black font-light px-8 py-2 mt-4'>{currentState === "Login" ? "Sign In" : "Sign Up"}</Button>
+            </form>
+        </>
+
     )
 }
 

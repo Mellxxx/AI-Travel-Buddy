@@ -42,6 +42,8 @@ const PlaceRecommendations = ({ country }) => {
             setLoading(true);
             setError(null);
 
+            console.log("Sending request data:", requestData);
+
             // API Request
             const response = await fetch(`${API_URL}/api/places`, {
                 method: "POST",

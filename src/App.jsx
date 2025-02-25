@@ -23,6 +23,7 @@ import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import Header from "./components/Header";
 
+import AppContextProvider from "./context/AppContext";
 
 // Pages Imports
 import DestinationRecco from './pages/DestinationRecco';
@@ -72,30 +73,31 @@ function App() {
   return (
     <div>
 
-
-      <ScrollToTop />
-      <ThemeProvider>
-        <CookieConsent onAccept={handleAcceptCookies} />
-        <DonatePopup />
-        <TooltipProvider>
-          <Header />
-          <Routes>
-            <Route path="/find-destination" element={<DestinationRecco />} />
-            <Route path="/site-notice" element={<SiteNotice />} />
-            <Route path="/general-terms-and-conditions" element={<Gtm />} />
-            <Route path="/cookie-policy" element={<CookiePolicy />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="destination/:country" element={<DestinationDetail />} />
-            <Route path='/' element={<Home />} />
-            <Route path="*" element={<NotFound />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/itineraries" element={<Itineraries />} />
-            <Route path='/create-itinerary' element={<CreateItinerarie />} />
-          </Routes>
-          <Footer />
-        </TooltipProvider>
-      </ThemeProvider>
-    </div>
+      <AppContextProvider>
+        <ScrollToTop />
+        <ThemeProvider>
+          <CookieConsent onAccept={handleAcceptCookies} />
+          <DonatePopup />
+          <TooltipProvider>
+            <Header />
+            <Routes>
+              <Route path="/find-destination" element={<DestinationRecco />} />
+              <Route path="/site-notice" element={<SiteNotice />} />
+              <Route path="/general-terms-and-conditions" element={<Gtm />} />
+              <Route path="/cookie-policy" element={<CookiePolicy />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="destination/:country" element={<DestinationDetail />} />
+              <Route path='/' element={<Home />} />
+              <Route path="*" element={<NotFound />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/itineraries" element={<Itineraries />} />
+              <Route path='/create-itinerary' element={<CreateItinerarie />} />
+            </Routes>
+            <Footer />
+          </TooltipProvider>
+        </ThemeProvider>
+      </AppContextProvider>
+    </div >
   );
 }
 

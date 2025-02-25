@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 import ModeToggle from './ModeToggle';
 
@@ -12,8 +14,22 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { Home } from "lucide-react";
+import { User } from 'lucide-react';
+
+import { AppContext } from '@/context/AppContext';
 
 const Header = () => {
+
+    const { token, setToken, navigate } = useContext(AppContext);
+
+    const logout = () => {
+        navigate('/login')
+        localStorage.removeItem('token')
+        setToken("")
+        setCartItems({})
+    }
+
+
     return (
         <div className='w-full h-40 px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] mt-0 pt-0 h-20 flex flex-row items-center justify-between'>
             <p className='text-xl '>AI Travel Buddy</p>
@@ -32,9 +48,41 @@ const Header = () => {
             <div className='flex flex-row items-center gap-2 md:gap-4'>
                 {/* <Button>Login</Button> */}
                 <ModeToggle className="flex-end"></ModeToggle>
-                {/* <Button>
-                    <Home></Home>
-                </Button> */}
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button
+                            variant="outline"
+                            size="icon"
+                            onClick={() => {
+                                if (!token) {
+                                    navigate('/login');
+                                }
+                            }}
+                        >
+                            <User />
+                        </Button>
+                    </DropdownMenuTrigger>
+                    {token && (
+                        <DropdownMenuContent align="end">
+                            {/* <NavLink to="/find-destination">
+                                <DropdownMenuItem>
+                                    Favourites
+                                </DropdownMenuItem>
+                            </NavLink>
+                            <Link to="/itineraries">
+                                <DropdownMenuItem>
+                                    My Itineraries
+                                </DropdownMenuItem>
+                            </Link>
+ */}
+                            <DropdownMenuItem onClick={logout}>
+                                Logout
+                            </DropdownMenuItem>
+
+                        </DropdownMenuContent>
+                    )}
+                </DropdownMenu>
+
                 <div className='md:hidden'>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>

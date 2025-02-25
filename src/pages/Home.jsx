@@ -104,49 +104,6 @@ const Home = () => {
             </section>
 
 
-
-            {/* Feature Section */}
-            {/* <section className="my-20">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                    <div className="rounded-xl p-4 border">
-                        <div className="flex w-full items-center justify-center mt-[-40px]">
-                            <div className="rounded-full bg-white p-1">
-                                <FaGlobe className="text-blue-500 text-5xl" />
-                            </div>
-                        </div>
-                        <h3 className="text-xl mt-4">Global Travel Insights</h3>
-                        <p className="mt-2 text-sm text-[--light]">Get recommendations for countries and cities worldwide.</p>
-                    </div>
-                    <div className="rounded-xl p-4 border">
-                        <div className="flex w-full items-center justify-center mt-[-40px]">
-                            <div className="rounded-full bg-white p-1">
-                                <FaPlane className="text-green-500 text-5xl" />
-                            </div>
-                        </div>
-                        <h3 className="text-xl mt-4">Cheapest Flights</h3>
-                        <p className="mt-2 text-sm text-[--light]">Find budget-friendly flights tailored to your needs.</p>
-                    </div>
-                    <div className="rounded-xl p-4 border">
-                        <div className="flex w-full items-center justify-center mt-[-40px]">
-                            <div className="rounded-full bg-white p-1">
-                                <FaMapMarkerAlt className="text-red-500 text-5xl" />
-                            </div>
-                        </div>
-                        <h3 className="text-xl mt-4">Top Attractions</h3>
-                        <p className="mt-2 text-sm text-[--light]">Discover must-see attractions based on your preferences.</p>
-                    </div>
-                    <div className="rounded-xl p-4 border">
-                        <div className="flex w-full items-center justify-center mt-[-40px]">
-                            <div className="rounded-full bg-white p-1">
-                                <FaRegStar className="text-yellow-500 text-5xl" />
-                            </div>
-                        </div>
-                        <h3 className="text-xl mt-4">Personalized Trips</h3>
-                        <p className="mt-2 text-sm text-[--light] mb-6">AI-powered suggestions tailored just for you.</p>
-                    </div>
-                </div>
-            </section> */}
-
             {/* CTA Section */}
             <section className="my-20 text-center">
                 <h2 className="text-4xl font-bold mb-4">Ready to Plan Your Next Trip?</h2>
@@ -158,13 +115,5 @@ const Home = () => {
         </div>
     );
 };
-
-const FeatureCard = ({ icon, title, text }) => (
-    <div className="p-6 bg-white dark:bg-[#060e22] rounded-lg shadow-lg text-center border">
-        <div className="mb-4">{icon}</div>
-        <h3 className="text-xl font-semibold">{title}</h3>
-        <p className="text-gray-500">{text}</p>
-    </div>
-);
-
+                                              
 export default Home;
