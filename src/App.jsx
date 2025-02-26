@@ -37,6 +37,9 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Itineraries from './pages/Itineraries';
 import CreateItinerarie from './pages/CreateItinerarie';
+import MyProfile from './pages/MyProfile';
+import Favorites from './pages/Favorites';
+import FavoriteDetail from './pages/FavoriteDetail';
 
 
 function App() {
@@ -92,6 +95,9 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/itineraries" element={<Itineraries />} />
               <Route path='/create-itinerary' element={<CreateItinerarie />} />
+              <Route path="/profile" element={<MyProfile />} />
+              <Route path="/favorites" element={<Favorites />} />
+              <Route path="/favorites/:id" element={<FavoriteDetail />} />
             </Routes>
             <Footer />
           </TooltipProvider>

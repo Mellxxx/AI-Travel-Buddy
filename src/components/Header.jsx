@@ -51,7 +51,7 @@ const Header = () => {
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button
-                            variant="outline"
+
                             size="icon"
                             onClick={() => {
                                 if (!token) {
@@ -68,13 +68,19 @@ const Header = () => {
                                 <DropdownMenuItem>
                                     Favourites
                                 </DropdownMenuItem>
-                            </NavLink>
-                            <Link to="/itineraries">
+                            </NavLink> */}
+                            <Link to="/profile">
                                 <DropdownMenuItem>
-                                    My Itineraries
+                                    My Profile
                                 </DropdownMenuItem>
                             </Link>
- */}
+
+                            <Link to="/favorites">
+                                <DropdownMenuItem>
+                                    My Favorites
+                                </DropdownMenuItem>
+                            </Link>
+
                             <DropdownMenuItem onClick={logout}>
                                 Logout
                             </DropdownMenuItem>
@@ -86,7 +92,7 @@ const Header = () => {
                 <div className='md:hidden'>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <Button variant="outline" size="icon">
+                            <Button size="icon">
                                 <Home />
                             </Button>
                         </DropdownMenuTrigger>

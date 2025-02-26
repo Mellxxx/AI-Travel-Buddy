@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import { AppContext } from '@/context/AppContext';
 
 // Shadcn/ui Imports
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -12,6 +13,10 @@ import {
 } from "../components/ui/tooltip";
 import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+
+import { Heart } from 'lucide-react';
+import { Share } from 'lucide-react';
 
 import safetyRatings from "../assets/safetyRatings";
 
@@ -21,6 +26,7 @@ import CountryImages from "../components/CountryImages";
 import PlaceRecommendations from "../components/PlaceRecommendations";
 import Map from '@/components/Map';
 
+const API_URL = import.meta.env.VITE_BACKEND_URL;
 
 
 const DestinationDetail = () => {
@@ -31,7 +37,71 @@ const DestinationDetail = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const { token } = useContext(AppContext);
+
     const cost = location.state?.cost || "N/A";
+
+    // Save to Favourites
+    const [saved, setSaved] = useState(false);
+
+    const toggleFavorite = async () => {
+        if (!token) {
+            alert("Please log in to save favorites.");
+            return;
+        }
+
+        if (saved) {
+            try {
+                const response = await fetch(`${API_URL}/api/favorites/remove/${country}`, {
+                    method: "DELETE",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    setSaved(false);
+
+                } else {
+                    alert(result.error);
+                }
+            } catch (error) {
+                console.error("Error removing favorite:", error);
+            }
+        } else {
+
+            const placesKey = `places_${country}`;
+            const places = localStorage.getItem(placesKey) ? JSON.parse(localStorage.getItem(placesKey)) : [];
+
+            const requestData = {
+                country,
+                description,
+                [placesKey]: places,
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/api/favorites/add`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify(requestData),
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    setSaved(true);
+
+                } else {
+                    alert(result.error);
+                }
+            } catch (error) {
+                console.error("Error saving favorite:", error);
+            }
+        }
+    };
 
     useEffect(() => {
         if (location.state?.description) {
@@ -60,6 +130,31 @@ const DestinationDetail = () => {
         fetchCountryData();
     }, [country]);
 
+    useEffect(() => {
+        const checkIfSaved = async () => {
+            if (!token) return;
+            try {
+                const response = await fetch(`${API_URL}/api/favorites`, {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                const result = await response.json();
+                if (result.success) {
+
+                    setSaved(result.favorites.some(fav => fav.country === country));
+                }
+            } catch (error) {
+                console.error("Fehler beim Abrufen der Favoriten:", error);
+            }
+        };
+
+        checkIfSaved();
+    }, [token, country]);
+
+
     if (loading) return <div className='flex justify-center items-center'>
         <div className='loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-16 w-16'></div>
     </div>
@@ -87,14 +182,44 @@ const DestinationDetail = () => {
 
     return (
         <div className='px-8 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] mt-0 pt-5'>
-            <Link to="/find-destination">
-                <div className=''>
-                    <div className='mb-8 flex flex-row items-center dark:bg-white bg-black dark:text-black text-white hover:bg-transparent w-[210px] transition cursor-pointer border-2 dark:border-white border-black p-2 rounded hover:text-black'>
-                        <ArrowLeft className=''></ArrowLeft>
-                        <p className=''>back to Countries-List</p>
-                    </div>
+            <div className='flex flex-row justify-between mb-8'>
+                <div>
+                    <Link to="/find-destination">
+                        <div className=''>
+                            <Button>
+                                <div className=' flex flex-row items-center '>
+                                    <ArrowLeft className=''></ArrowLeft>
+                                    <p className=''>back to Countries-List</p>
+                                </div>
+                            </Button>
+                        </div>
+                    </Link>
                 </div>
-            </Link>
+                <div className='flex flex-row gap-2'>
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button variant="outline" size="icon" onClick={toggleFavorite}>
+                                <Heart fill={saved ? "red" : "none"} strokeWidth={saved ? 0 : 2} />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent side="top">
+                            {saved ? "Remove from Favorites" : "Save to Favorites"}
+                        </TooltipContent>
+                    </Tooltip>
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button variant="outline"
+                                size="icon">
+                                <Share></Share>
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent side="top">
+                            Share this Page
+                        </TooltipContent>
+                    </Tooltip>
+                </div>
+            </div>
+
             <div className='flex flex-row items-center justify-between mb-4'>
                 <h1 className='text-5xl md:text-6xl lg:text-6xl mr-4'>{name}</h1>
                 <img src={flags.svg} alt={`${name} Flag`} className='w-20 md:w-40' />
