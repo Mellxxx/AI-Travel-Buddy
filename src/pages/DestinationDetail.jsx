@@ -301,12 +301,12 @@ const DestinationDetail = () => {
             <p className='text-[--light] mb-8'>Based on your preferences, intrests and budget: These are the Places you have to see</p>
             <PlaceRecommendations country={name} />
 
-            <h2 className='mt-10 text-4xl md:text-5xl mb-4'>Cheapest Flights</h2>
+            {/* <h2 className='mt-10 text-4xl md:text-5xl mb-4'>Cheapest Flights</h2>
             <p className='text-[--light] mb-4'>Rely on the cheapest Flights on the market.</p>
             <Flights></Flights>
             <h2 className='mt-20 text-4xl md:text-5xl mb-4'>Top Accommodations</h2>
             <p className='text-[--light] mb-4'>Top Accomodations that perfectly fit your needs and budget.</p>
-            <Flights></Flights>
+            <Flights></Flights> */}
         </div>
     );
 };

@@ -53,6 +53,7 @@ const Header = () => {
                         <Button
 
                             size="icon"
+                            variant="outline"
                             onClick={() => {
                                 if (!token) {
                                     navigate('/login');
@@ -64,16 +65,6 @@ const Header = () => {
                     </DropdownMenuTrigger>
                     {token && (
                         <DropdownMenuContent align="end">
-                            {/* <NavLink to="/find-destination">
-                                <DropdownMenuItem>
-                                    Favourites
-                                </DropdownMenuItem>
-                            </NavLink> */}
-                            <Link to="/profile">
-                                <DropdownMenuItem>
-                                    My Profile
-                                </DropdownMenuItem>
-                            </Link>
 
                             <Link to="/favorites">
                                 <DropdownMenuItem>
@@ -92,7 +83,7 @@ const Header = () => {
                 <div className='md:hidden'>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <Button size="icon">
+                            <Button size="icon" variant="outline">
                                 <Home />
                             </Button>
                         </DropdownMenuTrigger>

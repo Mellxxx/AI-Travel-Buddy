@@ -33,7 +33,9 @@ const Favorites = () => {
     }, [token]);
 
     if (!token) return <p>Please log in to view your favorites.</p>;
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <div className='flex justify-center items-center'>
+        <div className='loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-16 w-16'></div>
+    </div>;
 
     return (
         <div className="p-6">
@@ -48,9 +50,12 @@ const Favorites = () => {
                             key={fav.id}
                             className="p-4 border rounded-lg shadow-md hover:shadow-lg transition"
                         >
-                            <h2 className="text-xl font-bold">{fav.country}</h2>
+                            <div className="flex flex-row items-center gap-4">
+
+                                <h2 className="text-xl font-bold">{fav.country}</h2>
+                                <Heart fill="red" stroke="red" className="" />
+                            </div>
                             <p className="text-sm text-gray-500">{fav.description}</p>
-                            <Heart fill="red" stroke="red" className="mt-2" />
                         </Link>
                     ))}
                 </div>
