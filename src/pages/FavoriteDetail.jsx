@@ -33,7 +33,6 @@ const FavoriteDetail = () => {
     const [error, setError] = useState(null);
     const [saved, setSaved] = useState(true);
 
-    // 🟢 1️⃣ Favoriten-Daten abrufen
     useEffect(() => {
         const fetchFavorite = async () => {
             if (!token) {
@@ -66,7 +65,6 @@ const FavoriteDetail = () => {
         fetchFavorite();
     }, [id, token]);
 
-    // 🟢 2️⃣ Länder-Daten abrufen
     useEffect(() => {
         const fetchCountryData = async () => {
             if (!favorite || !favorite.country) return;
@@ -92,9 +90,8 @@ const FavoriteDetail = () => {
         };
 
         fetchCountryData();
-    }, [favorite]); // 🔥 WICHTIG: Hängt nur von `favorite` ab, nicht von `country`
+    }, [favorite]);
 
-    // 🟢 3️⃣ Favoriten entfernen
     const removeFavorite = async () => {
         if (!token) {
             alert("Please log in to remove favorites.");
@@ -120,7 +117,6 @@ const FavoriteDetail = () => {
         }
     };
 
-    // 🛑 Fehler-Handling & Ladeanzeige
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
     if (!favorite) return <p>No favorite found.</p>;
@@ -128,7 +124,6 @@ const FavoriteDetail = () => {
     const { country, description, places } = favorite;
     const countrySafety = safetyRatings.find((item) => item.country === country);
 
-    // Safety Badge Colors
     const getSafetyBadgeColor = (rating) => {
         if (rating <= 33) return "bg-red-500 text-white";
         if (rating <= 66) return "bg-orange-500 text-white";
@@ -225,7 +220,7 @@ const FavoriteDetail = () => {
                     const googleSearch = `https://www.google.com/search?q=${encodeURIComponent(country)}+Vacation`;
 
                     return (
-                        <div key={index} className="bg-white dark:bg-[#060e22] p-6 rounded-3xl border mb-8">
+                        <div key={index} className="bg-white dark:bg-[#060e22] p-6 rounded-3xl m-[-15px] border mb-8">
                             <div className="flex w-full flex-row hidden md:flex justify-between ">
                                 <h3 className="text-5xl">{place.place}</h3>
                                 <Tooltip>
