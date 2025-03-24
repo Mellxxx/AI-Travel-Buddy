@@ -151,7 +151,7 @@ const PlaceRecommendations = ({ country }) => {
                                 </div>
                             </div>
                             <div className="rounded-3xl dark:bg-[#111e41] bg-slate-100 p-4 px-6 mt-6">
-                                <p className="dark:text-slate-300 mb-4 lg:text-lg">{place.description}</p>
+                                <p className="dark:text-slate-300 text-slate-600 mb-4 lg:text-lg">{place.description}</p>
                             </div>
                         </div>
                     )

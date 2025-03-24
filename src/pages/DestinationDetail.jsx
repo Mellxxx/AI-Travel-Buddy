@@ -17,6 +17,14 @@ import { Button } from "@/components/ui/button";
 
 import { Heart } from 'lucide-react';
 import { Share } from 'lucide-react';
+import { Landmark } from 'lucide-react';
+import { Earth } from 'lucide-react';
+import { PersonStanding } from 'lucide-react';
+import { Ruler } from 'lucide-react';
+import { Clock } from 'lucide-react';
+import { Languages } from 'lucide-react';
+import { DollarSign } from 'lucide-react';
+import { ShieldAlert } from 'lucide-react';
 
 import safetyRatings from "../assets/safetyRatings";
 
@@ -248,42 +256,70 @@ const DestinationDetail = () => {
                 <TableBody className="text-md">
 
                     <TableRow >
-                        <TableCell>Capital:</TableCell>
+                        <TableCell>
+                            <div className='flex flex-row items-center gap-2'>
+                                <Landmark />Capital:
+                            </div>
+                        </TableCell>
                         <TableCell>{capital}</TableCell>
                     </TableRow>
 
                     <TableRow >
-                        <TableCell>Region:</TableCell>
+                        <TableCell>
+                            <div className='flex flex-row items-center gap-2'>
+                                <Earth />Region:
+                            </div>
+                        </TableCell>
                         <TableCell>{region}</TableCell>
                     </TableRow>
 
                     <TableRow >
-                        <TableCell>Population:</TableCell>
-                        <TableCell>{population.toLocaleString()}</TableCell>
+                        <TableCell>
+                            <div className='flex flex-row items-center gap-2'>
+                                <PersonStanding />Population:
+                            </div>
+                        </TableCell>                        <TableCell>{population.toLocaleString()}</TableCell>
                     </TableRow>
 
                     <TableRow >
-                        <TableCell>Area:</TableCell>
-                        <TableCell>{area.toLocaleString()} km²</TableCell>
+                        <TableCell>
+                            <div className='flex flex-row items-center gap-2'>
+                                <Ruler />Area:
+                            </div>
+                        </TableCell>                        <TableCell>{area.toLocaleString()} km²</TableCell>
                     </TableRow>
 
                     <TableRow >
-                        <TableCell>Timezone(s):</TableCell>
+                        <TableCell>
+                            <div className='flex flex-row items-center gap-2'>
+                                <Clock />Timezones:
+                            </div>
+                        </TableCell>
                         <TableCell>{timezones.join(', ')}</TableCell>
                     </TableRow>
 
                     <TableRow >
-                        <TableCell>Language(s):</TableCell>
+                        <TableCell>
+                            <div className='flex flex-row items-center gap-2'>
+                                <Languages />Languages:
+                            </div>
+                        </TableCell>
                         <TableCell>{languages.map(lang => lang.name).join(', ')}</TableCell>
                     </TableRow>
 
                     <TableRow >
-                        <TableCell>Currencie(s):</TableCell>
-                        <TableCell>{currencies.map(curr => `${curr.name} (${curr.code})`).join(', ')}</TableCell>
+                        <TableCell>
+                            <div className='flex flex-row items-center gap-2'>
+                                <DollarSign />Currencys:
+                            </div>
+                        </TableCell>                        <TableCell>{currencies.map(curr => `${curr.name} (${curr.code})`).join(', ')}</TableCell>
                     </TableRow>
                     <TableRow >
-                        <TableCell className="text-lg font-semibold">Safety Rating:</TableCell>
                         <TableCell>
+                            <div className='flex flex-row items-center gap-2'>
+                                <ShieldAlert />Safety Rating:
+                            </div>
+                        </TableCell>                          <TableCell>
                             {countrySafety ? (
                                 <Badge className={`${getSafetyBadgeColor(countrySafety.rating)} px-3 py-1 rounded-lg`}>
                                     {countrySafety.rating}/100
@@ -301,13 +337,13 @@ const DestinationDetail = () => {
             <p className='text-[--light] mb-8'>Based on your preferences, intrests and budget: These are the Places you have to see</p>
             <PlaceRecommendations country={name} />
 
-            {/* <h2 className='mt-10 text-4xl md:text-5xl mb-4'>Cheapest Flights</h2>
+            <h2 className='mt-10 text-4xl md:text-5xl mb-4'>Cheapest Flights</h2>
             <p className='text-[--light] mb-4'>Rely on the cheapest Flights on the market.</p>
             <Flights></Flights>
             <h2 className='mt-20 text-4xl md:text-5xl mb-4'>Top Accommodations</h2>
             <p className='text-[--light] mb-4'>Top Accomodations that perfectly fit your needs and budget.</p>
-            <Flights></Flights> */}
-        </div>
+            <Flights></Flights>
+        </div >
     );
 };
 

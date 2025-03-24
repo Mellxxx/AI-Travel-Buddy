@@ -314,7 +314,7 @@ const DestinationRecco = () => {
                         }}
 
                     >
-                        <option value="" disabled>Select a country</option>
+                        <option value="" disabled>current residence</option>
                         {countries.map((option) => (
                             <option key={option} value={option}>{option}</option>
                         ))}
@@ -371,7 +371,7 @@ const DestinationRecco = () => {
 
             {/* <-------- Results  --------> */}
             <h2 className='text-center text-2xl md:text-4xl mb-8' ref={targetRef}>Matching Results:</h2>
-            <div className='md:p-10 p-4 rounded-xl bg-slate-200 mb-20 dark:bg-[#060e22] dark:border-gray-600 dark:text-white'>
+            <div className='md:p-10 p-4 rounded-xl mb-20 dark:bg-[#060e22] dark:border-gray-600 dark:text-white'>
                 {isLoading ? (
                     <>
                         {Array(5)
@@ -400,7 +400,7 @@ const DestinationRecco = () => {
                         {recommendations.map(({ country, description, cost }) => {
                             const googleSearch = `https://www.google.com/search?q=${encodeURIComponent(country)}+Vacation`;
                             return (
-                                <div onClick={() => handleCountryClick(country, description, cost)} key={country} className='mb-8 bg-slate-100 cursor-pointer border-2 dark:hover:border-white hover:border-slate-400 transition dark:bg-[#263245f7] p-4 rounded-md'>
+                                <div onClick={() => handleCountryClick(country, description, cost)} key={country} className='mb-8 bg-slate-100 cursor-pointer border-2 dark:hover:border-white hover:border-yellow-500 transition dark:bg-[#263245f7] p-4 rounded-md'>
                                     <p className='text-2xl'>{country}</p>
                                     <p className='text-[--light]'>{description}</p>
                                     <div className='flex flex-row items-center text-green-500'>
